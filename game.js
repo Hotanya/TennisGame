@@ -2,6 +2,7 @@ var canvas = "";
 var canvasContext = "";
 var paddleY = 50;
 var ballX = 50;
+var ballSpeed = 5;
 
 window.onload = function(){
 var fps = 30;
@@ -12,14 +13,22 @@ setInterval(move, 1000/fps);
 
 draw();
 move();
+
 }
 
+
 function move(){
-ballX += 5;
+ballX += ballSpeed;
     
     // Moves paddles 20px 
     paddleY += 20;
     console.log(paddleY);
+    if(ballX >= 800){
+        ballSpeed = -5;
+    }
+    else if(ballX <= 0){
+        ballSpeed = 5;
+    }
 }
 
 function draw(){
@@ -41,5 +50,5 @@ function draw(){
 }
 
 function reverse(){
-    ballX -= 5;
+    ballX = ballX - 5;
 }
