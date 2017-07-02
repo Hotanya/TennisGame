@@ -4,25 +4,25 @@ var paddleY = 50;
 var ballX = 50;
 
 window.onload = function(){
-console.log("hello world");
+var fps = 30;
 
-// runs drawEverything every x milliseconds
-setInterval(drawEverything, 50);
+// runs draw every x milliseconds
+setInterval(draw, 1000/fps);
+setInterval(move, 1000/fps);
 
-drawEverything();
-drawEverything();
-drawEverything();
-
+draw();
+move();
 }
 
-
-function drawEverything(){
-
-    ballX += 5;
+function move(){
+ballX += 5;
     
     // Moves paddles 20px 
     paddleY += 20;
     console.log(paddleY);
+}
+
+function draw(){
 
     // sets colour and size of canvas
     canvas = document.getElementById("gameCanvas");
