@@ -5,11 +5,10 @@ var ballY = 50;
 var ballSpeedX = 10;
 var ballSpeedY = 4;
 var paddle1Y = 250;
-const paddleHeight = 100;
-var paddleSpeed = 20;
+const PADDLE_HEIGHT = 100;
 
 function mousePosition(event){
-    var canvasRect = canvas.getBoundingClientRect();
+    var canvasRect = canvas.getBoundingClientRect(); 
     var outside = document.documentElement;
 
     var mouseX = event.clientX - canvasRect.left - outside.scrollLeft;
@@ -22,25 +21,24 @@ function mousePosition(event){
 }
 
 window.onload = function(){
-var fps = 30;
+        // used to reference the gamCanvas element in the html code
+    canvas = document.getElementById("gameCanvas"); //these two lines need to be to be in the onload for it to work
+    canvasContext =canvas.getContext("2d");
+    
+        var fps = 30;
+        // runs draw every x milliseconds
+            setInterval(function(){
+                move();
+                draw();
+            }, 1000/fps);
 
-// runs draw every x milliseconds
-setInterval(draw, 1000/fps);
-setInterval(move, 1000/fps);
-
-draw();
-move();
-
-canvas.addEventListener("mouseMovement",
-    function(event){
-        var mousePos = mousePosition(event);
-        paddle1Y = mousePos.y;
-    });
+    canvas.addEventListener("mousemove",
+            function(event){
+                    var mousePos = mousePosition(event);
+                    paddle1Y = mousePos.y;
+            });
 }
 function draw(){
-    // used to reference the gamCanvas element in the html code
-    canvas = document.getElementById("gameCanvas");
-    canvasContext =canvas.getContext("2d");
     
     // sets colour and size of canvas
     drawRect(0,0,canvas.width,canvas.height, "black");
@@ -85,12 +83,4 @@ ballY += ballSpeedY;
         ballSpeedY = -ballSpeedY;
     }    
 
-// bounces paddle off the sides     
-// paddle1Y += paddleSpeed;
-// if(paddle1Y >= (canvas.height)-120){ //minusing the height of the paddle
-//         paddleSpeed = -paddleSpeed;
-//     }
-//     else if(paddleY <= 0){
-//         paddleSpeed = -paddleSpeed;
-//     }
 }
