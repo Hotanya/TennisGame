@@ -5,7 +5,9 @@ var ballY = 50;
 var ballSpeedX = 10;
 var ballSpeedY = 4;
 var paddle1Y = 250;
+var paddle2Y = 250;
 const PADDLE_HEIGHT = 100;
+const PADDLE_THICKNESS = 10;
 
 function mousePosition(event){
     var canvasRect = canvas.getBoundingClientRect(); 
@@ -51,7 +53,10 @@ function draw(){
     drawRect(0,0,canvas.width,canvas.height, "black");
 
     // creates the paddle of specified size and colour
-    drawRect(1,paddle1Y ,10,120,"white");
+    drawRect(1,paddle1Y ,PADDLE_THICKNESS,120,"white");
+
+    // creates the paddle of specified size and colour
+    drawRect(canvas.width-11,paddle2Y ,PADDLE_THICKNESS,120,"white");
 
     // creates the ball of specified size and colour
     drawBall(ballX,ballY,10,0,Math.PI*2,"white",true);// pi*2 makes full circle
