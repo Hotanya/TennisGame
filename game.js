@@ -49,11 +49,11 @@ function reset(){
 
 function paddle2Movement(){
     var paddle2YCenter = paddle2Y + (PADDLE_HEIGHT/2);
-    if(paddle2YCenter < ballY){
-        paddle2Y += 6;
+    if(paddle2YCenter < ballY-35){
+        paddle2Y += 10;
     }
-    else{
-        paddle2Y -= 6;
+    else if(paddle2YCenter > ballY+35){
+        paddle2Y -= 10;
     }
 }
 
