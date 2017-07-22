@@ -8,6 +8,8 @@ var paddle1Y = 250;
 var paddle2Y = 250;
 const PADDLE_HEIGHT = 100;
 const PADDLE_THICKNESS = 10;
+var p1Score = 0;
+var p2Score = 0;
 
 function mousePosition(event){
     var canvasRect = canvas.getBoundingClientRect(); 
@@ -70,6 +72,7 @@ ballX += ballSpeedX;
         }
         else{
             reset();
+            p2Score += 1;
         }
     }
 
@@ -79,6 +82,7 @@ ballX += ballSpeedX;
         }
         else{
             reset();
+            p1Score += 1;
         }
     }
 ballY += ballSpeedY;
@@ -104,6 +108,10 @@ function draw(){
 
     // creates the ball of specified size and colour
     drawBall(ballX,ballY,10,0,Math.PI*2,"white",true);// pi*2 makes full circle
+
+    canvasContext.fillText(p1Score,100,100);
+    canvasContext.fillText(p2Score,200,100);
+    
 }
 
 function drawBall(centerX,centerY,radius,startAngle,endAngle,colour,bool){
