@@ -38,6 +38,13 @@ window.onload = function(){
                     paddle1Y = mousePos.y;
             });
 }
+
+function reset(){
+    ballSpeedX = -ballSpeedX;
+    ballX = canvas.width/2;
+    ballY = canvas.height/2;
+}
+
 function draw(){
     
     // sets colour and size of canvas
@@ -72,7 +79,12 @@ ballX += ballSpeedX;
         ballSpeedX = -ballSpeedX;
     }
     else if(ballX <= 0){
-        ballSpeedX = -ballSpeedX;
+        if(ballY > paddle1Y && ballY < paddle1Y + PADDLE_HEIGHT){ //deflects the ball off the paddle
+        ballSpeedX = -ballSpeedX;            
+        }
+        else{
+            reset();
+        }
     }
 
 ballY += ballSpeedY;
